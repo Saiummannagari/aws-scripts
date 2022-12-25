@@ -1,0 +1,14 @@
+#!/bin/bash
+sudo yum update
+sudo yum install -y java
+sudo yum install -y maven
+sudo yum install -y git
+git clone https://github.com/Saiummannagari/demo1-ms1.git
+cd demo1-ms1/
+mvn install
+cd target
+java -jar *.jar
+
+
+
+//use #!/bin/bash at the beginning for amazon linux 2. Orelse,script doesnot work
