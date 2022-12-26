@@ -1,0 +1,42 @@
+Make sure, you are not performing the below commands on root volume. Root volume cannot be used by multiple instances. Take a separate volume and perform the below steps
+
+
+         --------------ec2-instance1----------
+
+df -h
+lsblk
+#to know if the device has attached file system attested to it
+sudo file -s /dev/xvdf
+#if file system is not attached, use the below command
+sudo mkfs -t xfs /dev/xvdf
+#make the directory
+sudo mkdir /data
+#mount the above created directory in to the device(create the file in the above folder only after mounting)
+sudo mount /dev/xvdf /data
+
+sudo chmod 777 /data
+#create te below file in /data
+echo "this is from volume" > volume.txt
+
+
+#####for creating partition follow the below commands#####
+sudo fdisk /dev/xvdf1 (select all default options)
+
+
+#######
+stop ec2-instance1 and detach the volume(not root volume)
+#######
+
+      ----------------ec2-instance2----------------
+######
+attach the above volume to ec2-instance2
+######
+
+#to know if the device has attached file system attested to it
+sudo file -s /dev/xvdf
+sudo mkdir -p /mnt/mydata
+sudo mount /dev/xvdf /mnt/mydata
+cd /mnt/mydata
+cat volume.txt
+
+
