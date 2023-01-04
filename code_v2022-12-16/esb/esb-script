@@ -1,5 +1,6 @@
 Make sure, you are not performing the below commands on root volume. Root volume cannot be used by multiple instances. Take a separate volume and perform the below steps
 
+(Only io volumes supports multi attach)
 
          --------------ec2-instance1----------
 
